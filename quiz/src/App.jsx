@@ -12,14 +12,14 @@ function NumberInput() {
   const handleConfirm = () => {
     const value = parseInt(inputValue);
     if (!isNaN(value) && value >= 1) {
-      let asterisks = '<br>';
+      let asterisks = '';
       for (let i = 1; i <= value; i++) {
         asterisks += '*'.repeat(i) + '<br>'; // เพิ่ม '*' และขึ้นบรรทัดใหม่ในแต่ละรอบ
       }
       for (let i = value-1; i >= 1; i--) {
         asterisks += '*'.repeat(i) + '<br>'; // ลด '*' และขึ้นบรรทัดใหม่ในแต่ละรอบ
       }
-      setNumber(`เหลือ ${asterisks}`);
+      setNumber(`${asterisks}`);
     } else {
       setNumber('');
     }
@@ -28,7 +28,7 @@ function NumberInput() {
   return (
     <div className="container">
       <div>
-        <label className="inputContainer" htmlFor="numberInput">รับจำนวน:</label>
+        <label className="inputContainer" htmlFor="numberInput">Input :</label>
         <input
           className="inputnumber"
           type="number"
@@ -36,7 +36,7 @@ function NumberInput() {
           value={inputValue}
           onChange={handleInputChange}
         />
-        <button className="confirmButton" onClick={handleConfirm}>ตกลง</button>
+        <button className="confirmButton" onClick={handleConfirm}>Submit</button>
       </div>
       <div className='result' dangerouslySetInnerHTML={{ __html: number }}></div>
     </div>

@@ -9,14 +9,15 @@
 .inputContainer {
   margin-left: 10px;
   margin-top: 10px;
-  width: 100%; /* เพิ่มคุณสมบัติ width เพื่อให้ input ครอบคลุมพื้นที่ทั้งแนวนอน */
+  width: 100%; 
+  font-size: 16px;
 }
 
 
 .inputnumber {
   margin-left: 10px;
   margin-top: 10px;
-  width: 200px;
+  width: 100px;
   margin-right: 10px;
   padding: 5px;
   border: 1px solid #ccc;
@@ -38,10 +39,6 @@
 
 
 .result {
-  white-space: pre;
   margin-left: 10px;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
 }
 

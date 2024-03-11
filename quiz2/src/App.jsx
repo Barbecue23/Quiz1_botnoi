@@ -2,12 +2,26 @@ import React, { useState, useEffect } from 'react';
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
+  const [pokemonDetails, setPokemonDetails] = useState({});
+  const [hpStats, setHpStats] = useState({});
+  const [attackStats, setAttackStats] = useState({});
+  const [defenseStats, setDefenseStats] = useState({});
 
   useEffect(() => {
     const fetchPokemonData = async () => {
       try {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=151');
         const data = await response.json();
+        const details = {};
+        await Promise.all(data.results.map(async (pokemon) => {
+          const pokemonResponse = await fetch(pokemon.url);
+          const pokemonData = await pokemonResponse.json();
+          details[pokemon.name] = {
+            type1: pokemonData.types[0].type.name,
+            type2: pokemonData.types[1] ? pokemonData.types[1].type.name : null
+          };
+        }));
+        setPokemonDetails(details);
         setPokemonList(data.results);
       } catch (error) {
         console.error('เกิดข้อผิดพลาดในการดึงข้อมูล Pokemon:', error);
@@ -16,8 +30,6 @@ function App() {
 
     fetchPokemonData();
   }, []);
-
-  const [hpStats, setHpStats] = useState({});
 
   useEffect(() => {
     const fetchHpBaseStat = async (url) => {
@@ -34,16 +46,52 @@ function App() {
       return null;
     };
 
-    const fetchHpStats = async () => {
-      const newHpStats = {};
-      await Promise.all(pokemonList.map(async (pokemon) => {
-        const hpBaseStat = await fetchHpBaseStat(pokemon.url);
-        newHpStats[pokemon.name] = hpBaseStat;
-      }));
-      setHpStats(newHpStats);
+    const fetchAttackBaseStat = async (url) => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const attackStat = data.stats.find(stat => stat.stat.name === 'attack');
+        if (attackStat) {
+          return attackStat.base_stat;
+        }
+      } catch (error) {
+        console.error('เกิดข้อผิดพลาดในการดึงข้อมูล Pokemon:', error);
+      }
+      return null;
     };
 
-    fetchHpStats();
+    const fetchDefenseBaseStat = async (url) => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const defenseStat = data.stats.find(stat => stat.stat.name === 'defense');
+        if (defenseStat) {
+          return defenseStat.base_stat;
+        }
+      } catch (error) {
+        console.error('เกิดข้อผิดพลาดในการดึงข้อมูล Pokemon:', error);
+      }
+      return null;
+    };
+
+    const fetchPokemonStats = async () => {
+      const newHpStats = {};
+      const newAttackStats = {};
+      const newDefenseStats = {};
+      await Promise.all(pokemonList.map(async (pokemon) => {
+        const hpBaseStat = await fetchHpBaseStat(pokemon.url);
+        const attackBaseStat = await fetchAttackBaseStat(pokemon.url);
+        const defenseBaseStat = await fetchDefenseBaseStat(pokemon.url);
+        newHpStats[pokemon.name] = hpBaseStat;
+        newAttackStats[pokemon.name] = attackBaseStat;
+        newDefenseStats[pokemon.name] = defenseBaseStat;
+      }));
+      setHpStats(newHpStats);
+      setAttackStats(newAttackStats);
+      setDefenseStats(newDefenseStats);
+    };
+
+    fetchPokemonStats();
   }, [pokemonList]);
 
   return (
@@ -51,10 +99,15 @@ function App() {
       <h1>Pokemon Base Stats</h1>
       <ul>
         {pokemonList.map((pokemon, index) => (
-          <li key={index}>
-            <strong>Name:</strong> {pokemon.name} <br></br>
-            <strong>HP:</strong> {hpStats[pokemon.name]}
-          </li>
+          <dir key={index}>
+            <strong>Name:</strong> {pokemon.name} <br />
+            <strong>Type 1:</strong> {pokemonDetails[pokemon.name]?.type1} <br />
+            <strong>Type 2:</strong> {pokemonDetails[pokemon.name]?.type2} <br />
+            <strong>Base Stats:</strong><br />
+            <>HP = {hpStats[pokemon.name]}</><br />
+            <>Attack = {attackStats[pokemon.name]}</><br />
+            <>Defense = {defenseStats[pokemon.name]}</>
+          </dir>
         ))}
       </ul>
     </div>

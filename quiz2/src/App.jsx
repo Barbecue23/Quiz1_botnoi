@@ -6,6 +6,8 @@ function App() {
   const [hpStats, setHpStats] = useState({});
   const [attackStats, setAttackStats] = useState({});
   const [defenseStats, setDefenseStats] = useState({});
+  const [specialattack, setSpecialattack] = useState({});
+  const [specialdefense, setSpecialdefense] = useState({});
 
   useEffect(() => {
     const fetchPokemonData = async () => {
@@ -74,21 +76,39 @@ function App() {
       return null;
     };
 
+    const fetchSpecialattack = async (url) => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const specialattack = data.stats.find(stat => stat.stat.name === 'special-attack');
+        if (specialattack) {
+          return specialattack.base_stat;
+        }
+      }
+      catch (error) {
+        console.error('เกิดข้อผิดพลาดในการดึงข้อมูล Pokemon:', error);
+      }
+      return null;
+    }
     const fetchPokemonStats = async () => {
       const newHpStats = {};
       const newAttackStats = {};
       const newDefenseStats = {};
+      const newSpecialattack = {};
       await Promise.all(pokemonList.map(async (pokemon) => {
         const hpBaseStat = await fetchHpBaseStat(pokemon.url);
         const attackBaseStat = await fetchAttackBaseStat(pokemon.url);
         const defenseBaseStat = await fetchDefenseBaseStat(pokemon.url);
+        const specialattack = await fetchSpecialattack(pokemon.url);
         newHpStats[pokemon.name] = hpBaseStat;
         newAttackStats[pokemon.name] = attackBaseStat;
         newDefenseStats[pokemon.name] = defenseBaseStat;
+        newSpecialattack[pokemon.name] = specialattack;
       }));
       setHpStats(newHpStats);
       setAttackStats(newAttackStats);
       setDefenseStats(newDefenseStats);
+      setSpecialattack(newSpecialattack);
     };
 
     fetchPokemonStats();
@@ -106,7 +126,8 @@ function App() {
             <strong>Base Stats:</strong><br />
             <>HP = {hpStats[pokemon.name]}</><br />
             <>Attack = {attackStats[pokemon.name]}</><br />
-            <>Defense = {defenseStats[pokemon.name]}</>
+            <>Defense = {defenseStats[pokemon.name]}</><br/>
+            <>Specialattack = {specialattack[pokemon.name]}</><br/>
           </dir>
         ))}
       </ul>

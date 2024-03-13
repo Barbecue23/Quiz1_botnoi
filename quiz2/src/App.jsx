@@ -11,8 +11,10 @@ function App() {
   const [specialDefenseStats, setSpecialDefenseStats] = useState({});
   const [speedStats, setSpeedStats] = useState({});
   const [loading, setLoading] = useState(false); // เพิ่ม state loading
+  const [showPokemonDex, setShowPokemonDex] = useState(false); // เพิ่ม state เพื่อควบคุมการแสดง Pokemon dex
 
   useEffect(() => {
+    // ประกาศฟังก์ชัน fetchPokemonData ให้ก่อน
     const fetchPokemonData = async () => {
       try {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=151');
@@ -80,35 +82,40 @@ function App() {
     setSpecialDefenseStats(newSpecialDefenseStats);
     setSpeedStats(newSpeedStats);
     setLoading(false); // สิ้นสุดการโหลดข้อมูล
+    setShowPokemonDex(true); // แสดง Pokemon dex หลังจากโหลดข้อมูลเสร็จ
   };
 
   return (
     <div className="container">
       <h1>API <br/>Pokemon</h1>
+      {/* ให้กดปุ่มเพื่อเรียกใช้ฟังก์ชัน fetchPokemonStats */}
       <button className="api button" onClick={fetchPokemonStats}>Get Pokemon dex</button><br/>
       {loading && <p>Loading...</p>} {/* แสดง Loading... เมื่อกำลังโหลดข้อมูล */}
-      <ul>
-        {pokemonList.map((pokemon, index) => (
-          <div key={index} className="pokemon-card">
-            {pokemonDetails[pokemon.name] && (
-              <div>
-                <img src={pokemonDetails[pokemon.name].sprites.front_default} alt={`Front ${pokemon.name}`} />
-                <img src={pokemonDetails[pokemon.name].sprites.back_default} alt={`Back ${pokemon.name}`} />
-              </div>
-            )}
-            <strong>Name: {pokemon.name}</strong><br />
-            <strong>Type 1:</strong> {pokemonDetails[pokemon.name]?.type1} <br />
-            <strong>Type 2:</strong> {pokemonDetails[pokemon.name]?.type2} <br />
-            <strong>Base Stats:</strong><br />
-            <>HP = {hpStats[pokemon.name]}</><br />
-            <>Attack = {attackStats[pokemon.name]}</><br />
-            <>Defense = {defenseStats[pokemon.name]}</><br />
-            <>Special-attack = {specialAttackStats[pokemon.name]}</><br />
-            <>Special-defense = {specialDefenseStats[pokemon.name]}</><br />
-            <>Speed = {speedStats[pokemon.name]}</><br />
-          </div>
-        ))}
-      </ul>
+      {/* ตรวจสอบว่าปุ่มถูกกดหรือไม่แล้วแสดง Pokemon dex */}
+      {showPokemonDex && (
+        <ul>
+          {pokemonList.map((pokemon, index) => (
+            <div key={index} className="pokemon-card">
+              {pokemonDetails[pokemon.name] && (
+                <div>
+                  <img src={pokemonDetails[pokemon.name].sprites.front_default} alt={`Front ${pokemon.name}`} />
+                  <img src={pokemonDetails[pokemon.name].sprites.back_default} alt={`Back ${pokemon.name}`} />
+                </div>
+              )}
+              <strong>Name: {pokemon.name}</strong><br />
+              <strong>Type 1:</strong> {pokemonDetails[pokemon.name]?.type1} <br />
+              <strong>Type 2:</strong> {pokemonDetails[pokemon.name]?.type2} <br />
+              <strong>Base Stats:</strong><br />
+              <>HP = {hpStats[pokemon.name]}</><br />
+              <>Attack = {attackStats[pokemon.name]}</><br />
+              <>Defense = {defenseStats[pokemon.name]}</><br />
+              <>Special-attack = {specialAttackStats[pokemon.name]}</><br />
+              <>Special-defense = {specialDefenseStats[pokemon.name]}</><br />
+              <>Speed = {speedStats[pokemon.name]}</><br />
+            </div>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

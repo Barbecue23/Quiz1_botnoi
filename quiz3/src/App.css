@@ -1,5 +1,3 @@
-/* App.css */
-
 /* Reset default margin and padding */
 body, h1, h2, p, ul {
   margin: 0;
@@ -26,62 +24,186 @@ body, h1, h2, p, ul {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  margin-left: 40px;
 }
 
 .profile-picture {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
   border-radius: 50%;
+  border: #083155 solid 3px;
   margin-right: 20px;
-  /* Add a placeholder background color or image */
   background-color: #f0f0f0;
 }
 
-.about-me {
+.name {
   text-align: left;
 }
 
-.about-me h1 {
+.name h1 {
   font-size: 24px;
-  margin-bottom: 10px;
 }
 
-.about-me p {
-  font-size: 16px;
-  margin-bottom: 20px;
+.lastname {
+  margin-left: 30px;
+  margin-top: 5px;
 }
 
-.contact-button {
-  background-color: #0074d9;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.name p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left: 10px; /* เปลี่ยนจาก 50px เป็น 10px */
 }
 
-.contact-button:hover {
-  background-color: #0056b3;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  margin-left: 40px;
+  margin-right: 20px; 
 }
 
-/* Education section styles */
-.education {
-  text-align: left;
+.container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  margin-left: 40px;
+  margin-right: 20px;
 }
 
-.education h2 {
+
+/* about-me section styles */
+.about-me {
+  text-align: center;
+  margin-right: 220px;
+  color: black;
+}
+
+.about-me h2 {
   font-size: 20px;
   margin-bottom: 10px;
 }
 
-.education ul {
-  list-style: none;
+.contact {
+  margin-left: 0px;
+  text-align: left;
 }
 
-.education li {
-  font-size: 16px;
+.contact-title {
+  margin-left: 0px;
+  margin-right: 250px;
+  background-color: #083155;
+  color: #ffffff;
+  padding: 5px 80px;
+  font-size: 10px;
+}
+
+.icon {
+  margin-top: 5px;
+  margin-right: 0px; 
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+
+
+.contact p {
+  display: inline; /* เพื่อทำให้ <p> เป็น inline element */
+  vertical-align: middle; /* เพื่อจัดให้รายละเอียดอยู่กลางแนวกับไอคอน */
+  margin-left: 5px;
+}
+
+
+.detail {
+  margin-left: 10px; /* เพิ่ม property นี้ */
+  margin-right: 200px;
+  font-size: 15px;
+  color: black;
   margin-bottom: 10px;
 }
 
-/* Add any additional styling or layout adjustments as needed */
+.language {
+  margin-left: 0px;
+  text-align: left;
+}
+
+.Language-title {
+  margin-left: 0px;
+  margin-right: 250px;
+  background-color: #083155;
+  color: #ffffff;
+  padding: 5px 70px;
+  font-size: 10px;
+}
+
+.language li {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.activities {
+  margin-left: 0px;
+  text-align: left;
+}
+
+.ACTIVITIES-title {
+  margin-left: 0px;
+  margin-right: 250px;
+  background-color: #083155;
+  color: #ffffff;
+  padding: 5px 70px;
+  font-size: 10px;
+}
+
+.activities li {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.interests {
+  margin-left: 0px;
+  text-align: left;
+}
+
+.INTERESTS-title {
+  margin-left: 0px;
+  margin-right: 250px;
+  background-color: #083155;
+  color: #ffffff;
+  padding: 5px 70px;
+  font-size: 10px;
+}
+
+.interests li {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.education {
+  margin-left: 0px;
+  text-align: left;
+  
+}
+
+.EDUCATION-title {
+  margin-left: 0px;
+  margin-right: 250px;
+  background-color: #083155;
+  color: #ffffff;
+  padding: 5px 70px;
+  font-size: 10px;
+}
+
+.university {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.education p {
+  margin-left: 0px;
+  text-align: left;
+  font-size: 10px;
+}

@@ -1,21 +1,28 @@
 /* Reset default margin and padding */
-body, h1, h2, p, ul {
+body,
+h1,
+h2,
+p,
+ul {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-/* Set background color and font styles */
 .App {
   background-color: #ffffff;
   font-family: Arial, sans-serif;
-  text-align: center;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Header styles */
 .App-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
+
   padding: 20px;
 }
 
@@ -24,7 +31,7 @@ body, h1, h2, p, ul {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  margin-left: 40px;
+  margin-left: 0px;
 }
 
 .profile-picture {
@@ -39,6 +46,9 @@ body, h1, h2, p, ul {
 
 .name {
   text-align: left;
+  margin-left: 0px;
+  margin-right: 40px;
+  color: #083155;
 }
 
 .name h1 {
@@ -54,55 +64,65 @@ body, h1, h2, p, ul {
   font-size: 18px;
   font-weight: bold;
   margin-top: 10px;
-  margin-left: 10px; /* เปลี่ยนจาก 50px เป็น 10px */
+  margin-left: 50px;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; 
-  margin-left: 40px;
-  margin-right: 20px; 
+  align-items: flex-start;
+  margin-left: 50px;
+  width: 300px;
 }
 
 .container2 {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; 
-  margin-left: 40px;
-  margin-right: 20px;
+  align-items: flex-end;
+  padding-bottom: 220px;
+  align-items: start;
+  margin-bottom: 100px;
+  margin-right: 50px;
+  width: 300px;
+
 }
 
 
 /* about-me section styles */
 .about-me {
+  margin-left: 50px;
   text-align: center;
-  margin-right: 220px;
   color: black;
+  margin-bottom: 20px;
 }
 
 .about-me h2 {
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .contact {
   margin-left: 0px;
   text-align: left;
+  margin-bottom: 10px;
 }
 
 .contact-title {
   margin-left: 0px;
-  margin-right: 250px;
+  margin-right: 0px;
   background-color: #083155;
   color: #ffffff;
   padding: 5px 80px;
+  padding-right: 20px;
+  padding-left: 20px;
   font-size: 10px;
+  width: 260px;
+  text-align: center;
 }
 
 .icon {
   margin-top: 5px;
-  margin-right: 0px; 
+  margin-right: 0px;
   width: 40px;
   height: 40px;
   object-fit: cover;
@@ -111,18 +131,19 @@ body, h1, h2, p, ul {
 
 
 .contact p {
-  display: inline; /* เพื่อทำให้ <p> เป็น inline element */
-  vertical-align: middle; /* เพื่อจัดให้รายละเอียดอยู่กลางแนวกับไอคอน */
-  margin-left: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+
 }
 
 
 .detail {
-  margin-left: 10px; /* เพิ่ม property นี้ */
+  margin-left: 0px;
   margin-right: 200px;
   font-size: 15px;
   color: black;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 .language {
@@ -132,16 +153,21 @@ body, h1, h2, p, ul {
 
 .Language-title {
   margin-left: 0px;
-  margin-right: 250px;
+  margin-right: auto;
   background-color: #083155;
   color: #ffffff;
-  padding: 5px 70px;
+  padding: 5px 80px;
+  padding-right: 20px;
+  padding-left: 20px;
   font-size: 10px;
+  width: 260px;
+  text-align: center;
 }
 
 .language li {
-  margin-left: 20px;
+  margin-left: 30px;
   margin-top: 10px;
+  color: #000;
 }
 
 .activities {
@@ -151,16 +177,22 @@ body, h1, h2, p, ul {
 
 .ACTIVITIES-title {
   margin-left: 0px;
-  margin-right: 250px;
+  margin-right: auto;
   background-color: #083155;
   color: #ffffff;
-  padding: 5px 70px;
+  padding: 5px 80px;
+  padding-right: 20px;
+  padding-left: 20px;
   font-size: 10px;
+  width: 260px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .activities li {
-  margin-left: 20px;
+  margin-left: 30px;
   margin-top: 10px;
+  color: #000;
 }
 
 .interests {
@@ -170,40 +202,111 @@ body, h1, h2, p, ul {
 
 .INTERESTS-title {
   margin-left: 0px;
-  margin-right: 250px;
+  margin-right: auto;
   background-color: #083155;
   color: #ffffff;
-  padding: 5px 70px;
+  padding: 5px 80px;
+  padding-right: 20px;
+  padding-left: 20px;
   font-size: 10px;
+  width: 260px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .interests li {
-  margin-left: 20px;
+  margin-left: 30px;
   margin-top: 10px;
+  color: #000;
 }
 
 .education {
   margin-left: 0px;
   text-align: left;
-  
+
 }
 
 .EDUCATION-title {
   margin-left: 0px;
-  margin-right: 250px;
+  margin-right: 0px;
   background-color: #083155;
   color: #ffffff;
-  padding: 5px 70px;
+  padding: 5px 80px;
+  padding-right: 20px;
+  padding-left: 30px;
   font-size: 10px;
+  width: 280px;
+  text-align: center;
 }
 
 .university {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
+  color: #000;
 }
 
 .education p {
   margin-left: 0px;
   text-align: left;
+  font-size: 13px;
+  color: #000;
+}
+
+.skills {
+  margin-left: 0px;
+  text-align: left;
+}
+
+.SKILLS-title {
+  margin-left: 0px;
+  margin-right: auto;
+  background-color: #083155;
+  color: #ffffff;
+  padding: 5px 80px;
+  padding-right: 20px;
+  padding-left: 20px;
   font-size: 10px;
+  width: 280px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.skills p {
+  width: calc(50% - 45px);
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  color: #000;
+}
+
+.studying {
+  margin-left: 0px;
+  text-align: left;
+}
+
+.STUDYING-title {
+  margin-left: 0px;
+  margin-right: auto;
+  background-color: #083155;
+  color: #ffffff;
+  padding: 5px 80px;
+  padding-right: 20px;
+  padding-left: 20px;
+  font-size: 10px;
+  width: 280px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.studying li {
+  margin-left: 30px;
+  margin-top: 10px;
+  color: #000;
 }

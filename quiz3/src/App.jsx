@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';  // คุณสามารถสร้างไฟล์ CSS สำหรับการจัดรูปแบบของคุณเอง
+import './App.css';
 
 function App() {
   return (
@@ -19,6 +19,9 @@ function App() {
             </p>
           </div>
         </div>
+
+      </header>
+      <body>
         <div className="container">
           <div className="about-me">
             <h2>About Me</h2>
@@ -35,7 +38,7 @@ function App() {
               alt="Phone"
               className="icon"
             />
-            <p className='detail'>084-802xxxxx</p><br />
+            <p className='detail'>084-8022671</p><br />
             <img
               src="image/ไอค่อนจดหมาย.png"
               alt="Email"
@@ -96,12 +99,31 @@ function App() {
           </div>
           <div className='skills'>
             <h2 className='SKILLS-title'>SKILLS</h2>
+            <p>Java</p>
+            <p>70%</p>
+            <p>C</p>
+            <p>75%</p>
+            <p>Python</p>
+            <p>50%</p>
+            <p>PHP</p>
+            <p>60%</p>
             <p>HTML</p>
+            <p>60%</p>
             <p>CSS</p>
-            <p>JavaScript</p>
+            <p>20%</p>
+            <p>SQL</p>
+            <p>65%</p>
+            <p>Flutter</p>
+            <p>65%</p>
+          </div>
+          <div className='studying'>
+            <h2 className='STUDYING-title'>STUDYING</h2>
+            <ul>
+              <li>Mobile applications ( Flutter )</li>
+            </ul>
           </div>
         </div>
-      </header>
+      </body>
     </div>
 
   );
